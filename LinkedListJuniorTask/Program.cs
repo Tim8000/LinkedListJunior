@@ -1,26 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+
 namespace LinkedListJuniorTask
 {
     class Program
     {
         static void Main(string[] args)
         {
-            LinkedList<int> ll = new LinkedList<int>();
-            ll.Add(1);
-            ll.Add(2);
-            ll.Add(3);
-            ll.Add(5);
-            ll.InsertElementByIndex(7,0);
+            var valueList = new LinkedList<double>
+            {
+                1,2,3,4,5,8,2,1
+            };
 
-       //     Console.WriteLine(ll.GetElementByIndex(2));
-
-            foreach (var item in ll)
+            foreach (var item in valueList)
             {
                 Console.WriteLine(item);
             }
 
-            Console.WriteLine("count" + ll.Count);
+            var values = LinkedListExtensions.EnumerableNodes(valueList);
+
+            var result = from element in values
+                orderby element descending
+                select element;
+
+            Console.WriteLine(result.Count());
         }
+
+
+
+        
     }
 }
